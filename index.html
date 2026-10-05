@@ -48,7 +48,7 @@ h2 {
 .card {
     display: block;
     width: 160px;
-    height: 200px;
+    height: 220px;
     background: white;
     border-radius: 14px;
     padding: 12px;
@@ -79,6 +79,16 @@ h2 {
     text-align: center;
     margin-top: 10px;
     line-height: 18px;
+}
+
+.card-price {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    margin-top: 5px;
+    line-height: 16px;
 }
 
 .actions {
@@ -113,7 +123,7 @@ h2 {
 
 .add-btn {
     width: 160px;
-    height: 200px;
+    height: 220px;
     border: 2px dashed #bbb;
     border-radius: 14px;
     background: transparent;
@@ -128,7 +138,9 @@ h2 {
     background: white;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal {
     display: none;
@@ -257,6 +269,10 @@ h2 {
                     Kiwi Ears Belle
                 </span>
 
+                <span class="card-price">
+                    Precio por consultar
+                </span>
+
             </a>
 
         </div>
@@ -272,10 +288,17 @@ h2 {
                 target="_blank"
             >
 
-                <img src="assets/crinacle.png" alt="TRUTHEAR x Crinacle ZERO:BLUE2">
+                <img
+                    src="assets/crinacle.png"
+                    alt="TRUTHEAR x Crinacle ZERO:BLUE2"
+                >
 
                 <span class="card-name">
                     TRUTHEAR x Crinacle ZERO:BLUE2
+                </span>
+
+                <span class="card-price">
+                    Precio por consultar
                 </span>
 
             </a>
@@ -302,6 +325,10 @@ h2 {
                     BQEYZ
                 </span>
 
+                <span class="card-price">
+                    Precio por consultar
+                </span>
+
             </a>
 
         </div>
@@ -317,10 +344,17 @@ h2 {
                 target="_blank"
             >
 
-                <img src="assets/bunny.png" alt="TANCHJIM Bunny">
+                <img
+                    src="assets/bunny.png"
+                    alt="TANCHJIM Bunny"
+                >
 
                 <span class="card-name">
                     TANCHJIM Bunny
+                </span>
+
+                <span class="card-price">
+                    Precio por consultar
                 </span>
 
             </a>
@@ -374,6 +408,10 @@ h2 {
                     iFi Uno - DAC & AMP
                 </span>
 
+                <span class="card-price">
+                    Precio por consultar
+                </span>
+
             </a>
 
         </div>
@@ -389,10 +427,17 @@ h2 {
                 target="_blank"
             >
 
-                <img src="assets/kiwi.png" alt="Kiwi Ears AD1">
+                <img
+                    src="assets/kiwi.png"
+                    alt="Kiwi Ears AD1"
+                >
 
                 <span class="card-name">
                     Kiwi Ears AD1
+                </span>
+
+                <span class="card-price">
+                    Precio por consultar
                 </span>
 
             </a>
@@ -410,10 +455,17 @@ h2 {
                 target="_blank"
             >
 
-                <img src="assets/nk1.png" alt="NICEHCK NK1 MAX">
+                <img
+                    src="assets/nk1.png"
+                    alt="NICEHCK NK1 MAX"
+                >
 
                 <span class="card-name">
                     NICEHCK NK1 MAX
+                </span>
+
+                <span class="card-price">
+                    Precio por consultar
                 </span>
 
             </a>
@@ -438,6 +490,10 @@ h2 {
 
                 <span class="card-name">
                     TOPPING DX1 II
+                </span>
+
+                <span class="card-price">
+                    Precio por consultar
                 </span>
 
             </a>
@@ -474,6 +530,8 @@ h2 {
         </h3>
 
 
+        <!-- NOMBRE -->
+
         <div class="field">
 
             <label>
@@ -489,6 +547,8 @@ h2 {
         </div>
 
 
+        <!-- LINK -->
+
         <div class="field">
 
             <label>
@@ -503,6 +563,25 @@ h2 {
 
         </div>
 
+
+        <!-- PRECIO -->
+
+        <div class="field">
+
+            <label>
+                Precio
+            </label>
+
+            <input
+                type="text"
+                id="productPrice"
+                placeholder="$999 MXN"
+            >
+
+        </div>
+
+
+        <!-- IMAGEN -->
 
         <div class="field">
 
@@ -524,6 +603,8 @@ h2 {
 
         </div>
 
+
+        <!-- BOTONES -->
 
         <div class="modal-buttons">
 
@@ -573,11 +654,17 @@ function openModal(section) {
     document.getElementById("productLink")
         .value = "";
 
+    document.getElementById("productPrice")
+        .value = "";
+
     document.getElementById("imageUrl")
         .value = "";
 
     document.getElementById("imagePreview")
         .style.display = "none";
+
+    document.getElementById("imagePreview")
+        .src = "";
 
     document.getElementById("modal")
         .style.display = "flex";
@@ -598,7 +685,7 @@ function closeModal() {
 
 
 /* ==========================================
-   PREVIEW
+   PREVIEW DE IMAGEN
 ========================================== */
 
 function previewImage() {
@@ -624,7 +711,7 @@ function previewImage() {
 
 
 /* ==========================================
-   EDITAR
+   EDITAR PRODUCTO
 ========================================== */
 
 function editCard(button) {
@@ -637,6 +724,9 @@ function editCard(button) {
 
     const img =
         card.querySelector("img");
+
+    const price =
+        card.querySelector(".card-price");
 
     editingCard = wrap;
 
@@ -652,6 +742,12 @@ function editCard(button) {
         .value =
         card.href;
 
+    document.getElementById("productPrice")
+        .value =
+        price
+        ? price.textContent.trim()
+        : "";
+
     document.getElementById("imageUrl")
         .value =
         img.src;
@@ -664,7 +760,7 @@ function editCard(button) {
 
 
 /* ==========================================
-   GUARDAR
+   GUARDAR PRODUCTO
 ========================================== */
 
 function saveCard() {
@@ -677,22 +773,28 @@ function saveCard() {
         document.getElementById("productLink")
         .value.trim();
 
+    const price =
+        document.getElementById("productPrice")
+        .value.trim();
+
     const image =
         document.getElementById("imageUrl")
         .value.trim();
 
 
-    if (!name || !link || !image) {
+    if (!name || !link || !price || !image) {
 
         alert(
-            "Completa nombre, enlace e imagen."
+            "Completa nombre, enlace, precio e imagen."
         );
 
         return;
     }
 
 
-    /* EDITAR */
+    /* ==========================================
+       EDITAR
+    ========================================== */
 
     if (editingCard) {
 
@@ -702,6 +804,9 @@ function saveCard() {
         const img =
             card.querySelector("img");
 
+        const priceElement =
+            card.querySelector(".card-price");
+
         card.href = link;
 
         card.querySelector(".card-name")
@@ -709,13 +814,33 @@ function saveCard() {
 
         img.src = image;
 
+        if (priceElement) {
+
+            priceElement.textContent = price;
+
+        } else {
+
+            const newPrice =
+                document.createElement("span");
+
+            newPrice.className =
+                "card-price";
+
+            newPrice.textContent =
+                price;
+
+            card.appendChild(newPrice);
+        }
+
         closeModal();
 
         return;
     }
 
 
-    /* NUEVO */
+    /* ==========================================
+       NUEVO PRODUCTO
+    ========================================== */
 
     const container =
         currentSection === "iem"
@@ -726,26 +851,36 @@ function saveCard() {
     const wrap =
         document.createElement("div");
 
-    wrap.className = "card-wrap";
+    wrap.className =
+        "card-wrap";
 
 
     const card =
         document.createElement("a");
 
-    card.className = "card";
+    card.className =
+        "card";
 
-    card.href = link;
+    card.href =
+        link;
 
-    card.target = "_blank";
+    card.target =
+        "_blank";
 
+
+    /* IMAGEN */
 
     const img =
         document.createElement("img");
 
-    img.src = image;
+    img.src =
+        image;
 
-    img.alt = name;
+    img.alt =
+        name;
 
+
+    /* NOMBRE */
 
     const nameElement =
         document.createElement("span");
@@ -757,60 +892,94 @@ function saveCard() {
         name;
 
 
+    /* PRECIO */
+
+    const priceElement =
+        document.createElement("span");
+
+    priceElement.className =
+        "card-price";
+
+    priceElement.textContent =
+        price;
+
+
     card.appendChild(img);
 
     card.appendChild(nameElement);
 
+    card.appendChild(priceElement);
 
-    /* BOTONES */
+
+    /* ==========================================
+       BOTONES EDITAR / ELIMINAR
+    ========================================== */
 
     const actions =
         document.createElement("div");
 
-    actions.className = "actions";
+    actions.className =
+        "actions";
 
+
+    /* EDITAR */
 
     const edit =
         document.createElement("button");
 
-    edit.className = "action-btn";
+    edit.className =
+        "action-btn";
 
-    edit.textContent = "✏️";
+    edit.textContent =
+        "✏️";
 
-    edit.title = "Editar";
+    edit.title =
+        "Editar";
 
-    edit.onclick = function(event) {
+    edit.onclick =
+        function(event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        editCard(this);
-    };
+            event.stopPropagation();
 
+            editCard(this);
+
+        };
+
+
+    /* ELIMINAR */
 
     const remove =
         document.createElement("button");
 
-    remove.className = "action-btn";
+    remove.className =
+        "action-btn";
 
-    remove.textContent = "✕";
+    remove.textContent =
+        "✕";
 
-    remove.title = "Eliminar";
+    remove.title =
+        "Eliminar";
 
-    remove.onclick = function(event) {
+    remove.onclick =
+        function(event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        event.stopPropagation();
+            event.stopPropagation();
 
-        if (
-            confirm(
-                "¿Eliminar " + name + "?"
-            )
-        ) {
+            if (
+                confirm(
+                    "¿Eliminar " + name + "?"
+                )
+            ) {
 
-            wrap.remove();
-        }
-    };
+                wrap.remove();
+
+            }
+
+        };
 
 
     actions.appendChild(edit);
@@ -822,6 +991,10 @@ function saveCard() {
 
     wrap.appendChild(actions);
 
+
+    /* ==========================================
+       INSERTAR ANTES DEL BOTÓN AGREGAR
+    ========================================== */
 
     const addButton =
         container.querySelector(".add-btn");
@@ -838,7 +1011,7 @@ function saveCard() {
 
 
 /* ==========================================
-   CLICK FUERA
+   CLICK FUERA DEL MODAL
 ========================================== */
 
 document
@@ -860,7 +1033,7 @@ document
 
 
 /* ==========================================
-   ESC
+   ESC PARA CERRAR
 ========================================== */
 
 document.addEventListener(
