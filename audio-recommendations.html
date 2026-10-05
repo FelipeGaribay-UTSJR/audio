@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DACs & IEMs</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #F9F8F7;
+    color: #222;
+    margin: 0;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card-wrap {
+    position: relative;
+    width: 160px;
+}
+
+.card {
+    display: block;
+    width: 160px;
+    height: 200px;
+    background: white;
+    border-radius: 14px;
+    padding: 12px;
+    text-decoration: none;
+    color: #222;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 135px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f5f5f5;
+}
+
+.card-name {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 18px;
+}
+
+.actions {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+}
+
+.card-wrap:hover .actions {
+    opacity: 1;
+}
+
+.action-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    transform: scale(1.08);
+}
+
+.add-btn {
+    width: 160px;
+    height: 200px;
+    border: 2px dashed #bbb;
+    border-radius: 14px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+}
+
+.add-btn:hover {
+    border-color: #555;
+    color: #222;
+    background: white;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 430px;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.field input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#imagePreview {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background: #f5f5f5;
+    border-radius: 10px;
+    margin-top: 12px;
+    display: none;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #eee;
+}
+
+.save-btn {
+    background: #222;
+    color: white;
+}
+
+.error-image {
+    width: 100%;
+    height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f1f1;
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎵 Recomendaciones de Audio</h1>
+
+
+<!-- ==================================================
+     IEMS
+================================================== -->
+
+<div class="section">
+
+    <h2>🎧 IEM Recommendations</h2>
+
+    <div class="cards" id="iemCards">
+
+
+        <!-- KIWI EARS BELLE -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.amazon.com.mx/Linsoul-Kiwi-Ears-Belle-Profesionales/dp/B0FY62S5HZ"
+                target="_blank"
+            >
+
+                <img
+                    src="https://www.linsoul.com/cdn/shop/files/Kiwi_Ears_Belle_2_9b03f098-3723-4532-a27c-1297404fa4c9.jpg?v=1762224737&width=1946"
+                    alt="Kiwi Ears Belle"
+                >
+
+                <span class="card-name">
+                    Kiwi Ears Belle
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- TRUTHEAR ZERO BLUE2 -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.amazon.com.mx/TRUTHEAR-Crinacle-Zero-Auriculares-intrauditivos/dp/B0DZHC1H8F"
+                target="_blank"
+            >
+
+                <img
+                    src="https://cdn.prod.website-files.com/65e0a1c5d4c2d5e5f7d5b5c4/67c0d8b7e4c7f4c6e9f2c9f4_zero-blue2.jpg"
+                    alt="TRUTHEAR Zero Blue2"
+                >
+
+                <span class="card-name">
+                    TRUTHEAR x Crinacle ZERO:BLUE2
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- BQEYZ -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.amazon.com.mx/BQEYZ-Auriculares-Intrauditivos-Videojuegos-Desmontables/dp/B0G2QH2X14"
+                target="_blank"
+            >
+
+                <img
+                    src="https://www.bqeyz.com/cdn/shop/files/bqeyz.net_bqeyz-ni-neon-black-green-hifi-iem-earphone.webp"
+                    alt="BQEYZ"
+                >
+
+                <span class="card-name">
+                    BQEYZ
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- TANCHJIM BUNNY -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.amazon.com.mx/TANCHIJIM-Auriculares-intrauditivo-cristalino-entusiastas/dp/B0DRYY7XNG"
+                target="_blank"
+            >
+
+                <img
+                    src="https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpv8ob1alngu0b"
+                    alt="TANCHJIM Bunny"
+                >
+
+                <span class="card-name">
+                    TANCHJIM Bunny
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- AGREGAR -->
+
+        <button
+            class="add-btn"
+            onclick="openModal('iem')"
+        >
+            ＋<br>
+            Agregar IEM
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     DACS
+================================================== -->
+
+<div class="section">
+
+    <h2>🎛️ DAC Recommendations</h2>
+
+    <div class="cards" id="dacCards">
+
+
+        <!-- IFI UNO -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.amazon.com.mx/iFi-uno-auriculares-streaming-altavoces/dp/B0BM52VPM1"
+                target="_blank"
+            >
+
+                <img
+                    src="https://ifi-audio.com/cdn/shop/files/UNO-3.jpg"
+                    alt="iFi Uno"
+                >
+
+                <span class="card-name">
+                    iFi Uno - DAC & AMP
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- KIWI EARS AD1 -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.amazon.com.mx/Linsoul-Kiwi-Ears-AD1-Auriculares/dp/B0G3597PBC"
+                target="_blank"
+            >
+
+                <img
+                    src="https://kiwiears.com/cdn/shop/files/AD1_1.jpg"
+                    alt="Kiwi Ears AD1"
+                >
+
+                <span class="card-name">
+                    Kiwi Ears AD1
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- NICEHCK NK1 MAX -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.nicehck.com/products/nk1-max?sca_ref=9185017.bnGYqsxONg"
+                target="_blank"
+            >
+
+                <img
+                    src="https://www.nicehck.com/cdn/shop/files/NK1_MAX.jpg"
+                    alt="NICEHCK NK1 MAX"
+                >
+
+                <span class="card-name">
+                    NICEHCK NK1 MAX
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- TOPPING DX1 II -->
+
+        <div class="card-wrap">
+
+            <a
+                class="card"
+                href="https://www.amazon.com.mx/Topping-Amplificador-auriculares-ES9039Q2M-balanceada/dp/B0H254C4GQ"
+                target="_blank"
+            >
+
+                <img
+                    src="https://www.topping.store/cdn/shop/files/4-_-_00002.jpg"
+                    alt="TOPPING DX1 II"
+                >
+
+                <span class="card-name">
+                    TOPPING DX1 II
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- AGREGAR -->
+
+        <button
+            class="add-btn"
+            onclick="openModal('dac')"
+        >
+            ＋<br>
+            Agregar DAC
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     MODAL
+================================================== -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-content">
+
+        <h3 id="modalTitle">
+            Agregar producto
+        </h3>
+
+
+        <div class="field">
+
+            <label>
+                Nombre del producto
+            </label>
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="Ej. FiiO KA13"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Link del producto
+            </label>
+
+            <input
+                type="url"
+                id="productLink"
+                placeholder="https://..."
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                URL directa de la imagen
+            </label>
+
+            <input
+                type="url"
+                id="imageUrl"
+                placeholder="https://..."
+                oninput="previewImage()"
+            >
+
+            <img
+                id="imagePreview"
+                alt="Vista previa"
+            >
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-btn"
+                onclick="closeModal()"
+            >
+                Cancelar
+            </button>
+
+            <button
+                class="save-btn"
+                onclick="saveCard()"
+            >
+                Guardar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+let currentSection = null;
+let editingCard = null;
+
+
+/* ==========================================
+   ABRIR MODAL
+========================================== */
+
+function openModal(section) {
+
+    currentSection = section;
+    editingCard = null;
+
+    document.getElementById("modalTitle")
+        .textContent = "Agregar producto";
+
+    document.getElementById("productName")
+        .value = "";
+
+    document.getElementById("productLink")
+        .value = "";
+
+    document.getElementById("imageUrl")
+        .value = "";
+
+    document.getElementById("imagePreview")
+        .style.display = "none";
+
+    document.getElementById("modal")
+        .style.display = "flex";
+}
+
+
+/* ==========================================
+   CERRAR MODAL
+========================================== */
+
+function closeModal() {
+
+    document.getElementById("modal")
+        .style.display = "none";
+
+    editingCard = null;
+}
+
+
+/* ==========================================
+   PREVIEW
+========================================== */
+
+function previewImage() {
+
+    const url =
+        document.getElementById("imageUrl")
+        .value.trim();
+
+    const preview =
+        document.getElementById("imagePreview");
+
+    if (!url) {
+
+        preview.style.display = "none";
+        preview.src = "";
+
+        return;
+    }
+
+    preview.src = url;
+    preview.style.display = "block";
+}
+
+
+/* ==========================================
+   EDITAR
+========================================== */
+
+function editCard(button) {
+
+    const wrap =
+        button.closest(".card-wrap");
+
+    const card =
+        wrap.querySelector(".card");
+
+    const img =
+        card.querySelector("img");
+
+    editingCard = wrap;
+
+    document.getElementById("modalTitle")
+        .textContent = "Editar producto";
+
+    document.getElementById("productName")
+        .value =
+        card.querySelector(".card-name")
+        .textContent.trim();
+
+    document.getElementById("productLink")
+        .value =
+        card.href;
+
+    document.getElementById("imageUrl")
+        .value =
+        img.src;
+
+    previewImage();
+
+    document.getElementById("modal")
+        .style.display = "flex";
+}
+
+
+/* ==========================================
+   GUARDAR
+========================================== */
+
+function saveCard() {
+
+    const name =
+        document.getElementById("productName")
+        .value.trim();
+
+    const link =
+        document.getElementById("productLink")
+        .value.trim();
+
+    const image =
+        document.getElementById("imageUrl")
+        .value.trim();
+
+
+    if (!name || !link || !image) {
+
+        alert(
+            "Completa nombre, enlace e imagen."
+        );
+
+        return;
+    }
+
+
+    /* EDITAR */
+
+    if (editingCard) {
+
+        const card =
+            editingCard.querySelector(".card");
+
+        const img =
+            card.querySelector("img");
+
+        card.href = link;
+
+        card.querySelector(".card-name")
+            .textContent = name;
+
+        img.src = image;
+
+        closeModal();
+
+        return;
+    }
+
+
+    /* NUEVO */
+
+    const container =
+        currentSection === "iem"
+        ? document.getElementById("iemCards")
+        : document.getElementById("dacCards");
+
+
+    const wrap =
+        document.createElement("div");
+
+    wrap.className = "card-wrap";
+
+
+    const card =
+        document.createElement("a");
+
+    card.className = "card";
+
+    card.href = link;
+
+    card.target = "_blank";
+
+
+    const img =
+        document.createElement("img");
+
+    img.src = image;
+
+    img.alt = name;
+
+
+    const nameElement =
+        document.createElement("span");
+
+    nameElement.className =
+        "card-name";
+
+    nameElement.textContent =
+        name;
+
+
+    card.appendChild(img);
+
+    card.appendChild(nameElement);
+
+
+    /* BOTONES */
+
+    const actions =
+        document.createElement("div");
+
+    actions.className = "actions";
+
+
+    const edit =
+        document.createElement("button");
+
+    edit.className = "action-btn";
+
+    edit.textContent = "✏️";
+
+    edit.title = "Editar";
+
+    edit.onclick = function(event) {
+
+        event.preventDefault();
+
+        editCard(this);
+    };
+
+
+    const remove =
+        document.createElement("button");
+
+    remove.className = "action-btn";
+
+    remove.textContent = "✕";
+
+    remove.title = "Eliminar";
+
+    remove.onclick = function(event) {
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        if (
+            confirm(
+                "¿Eliminar " + name + "?"
+            )
+        ) {
+
+            wrap.remove();
+        }
+    };
+
+
+    actions.appendChild(edit);
+
+    actions.appendChild(remove);
+
+
+    wrap.appendChild(card);
+
+    wrap.appendChild(actions);
+
+
+    const addButton =
+        container.querySelector(".add-btn");
+
+
+    container.insertBefore(
+        wrap,
+        addButton
+    );
+
+
+    closeModal();
+}
+
+
+/* ==========================================
+   CLICK FUERA
+========================================== */
+
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* ==========================================
+   ESC
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
